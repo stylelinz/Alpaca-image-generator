@@ -1,36 +1,65 @@
 import selection from './selection.json'
 import alpaca from './Alpaca.js'
 
+let accessoryState = 'neck'
 const panel = document.createElement('div')
-const categories = document.createElement('div')
-const options = document.createElement('div')
-panel.id = 'panel'
-categories.id = 'categories'
-options.id = 'options'
 
-Object.keys(selection).forEach(key => {
-  categories.innerHTML += `<button class="btn">${key}</button>`
-})
+panel.className = 'panel'
 
-categories.addEventListener('click', event => {
-  const { target } = event
-  if (target.tagName === 'BUTTON') {
-    renderOptions(target.innerText)
-  }
-})
+const accessoryElem = accessory()
+const styleElem = style()
 
-panel.appendChild(categories)
-panel.appendChild(options)
+panel.appendChild(accessoryElem)
+panel.appendChild(styleElem)
 
 export default panel
 
-function renderOptions (prop) {
-  let content = ''
-  selection[prop].forEach(option => {
-    const isSelected = option === alpaca[prop] ? 'checked' : ''
-    content +=
-      `<input type="radio" name="options" id="${option}" ${isSelected}>
-      <label for="${option}" class="button-label">${option}</label>`
+function accessory () {
+  const accessory = document.createElement('section')
+
+  accessory.id = 'accessories'
+  accessory.innerHTML = '<h4 class="title">Accessorize the alpaca\'s</h4>'
+
+  accessory.addEventListener('click', event => {
+    const { target } = event
+    if (target.tagName === 'BUTTON') {
+      changeAccessory(target.innerText.toLowerCase())
+    }
   })
-  options.innerHTML = content
+
+  Object.keys(selection).reverse().forEach(key => {
+    accessory.innerHTML += `<button class="btn">${key}</button>`
+  })
+  return accessory
+}
+
+function style () {
+  const style = document.createElement('section')
+
+  style.id = 'style'
+  style.innerHTML = '<h4 class="title">style</h4>'
+
+  style.addEventListener('click', event => {
+    const { target } = event
+    if (target.tagName !== 'INPUT') return false
+    alpaca[accessoryState] = target.id
+  })
+
+  style.renderOptions = (key) => {
+    const content = selection[key].map(style => {
+      const isSelected = style === alpaca[key] ? 'checked' : ''
+      return `<div>
+          <input type="radio" name="options" id="${style}" ${isSelected}>
+          <label for="${style}" class="btn">${style}</label>
+        </div>`
+    }).join('')
+    style.innerHTML = '<h4 class="title">style</h4>' + content
+  }
+
+  return style
+}
+
+function changeAccessory (prop) {
+  accessoryState = prop
+  styleElem.renderOptions(prop)
 }

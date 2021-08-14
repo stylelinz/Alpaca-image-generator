@@ -15,8 +15,75 @@ body {
   align-items: center;
 }
 
-#app {
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+h1 {
+  font-size: 40px;
+  margin-bottom: 0.5em;
+}
+
+.title {
+  text-align: left;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.container {
+  max-width: 800px;
+  min-height: 500px;
+  display: flex;
+}
+
+/* preview (left side) */
+
+.preview {
+  margin-right: 40px;
+}
+
+.preview>div:first-of-type {
+  height: 360px;
+  width: 360px;
+  background: #003277;
+}
+
+.preview .footer {
+  margin-top: 10px;
+}
+
+/* panel (right side) */
+
+.panel {
+  height: 600px;
+}
+
+.btn {
+  height: 44px;
+  padding: 12px 32px;
+  display: inline-block;
+  margin: 0 8px 8px 0;
+  border: 1px solid #8bb7f9;
+  color: #8bb7f9;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-radius: 32px;
+}
+
+.btn:hover {
+  color: #2a5ca7;
+}
+
+section>div {
+  display: inline-block;
+  position: relative;
+}
+
+input[type="radio"] {
+  /* opacity: 0.01; */
+  z-index: 100;
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}
+
+input[type="radio"]:checked+label {
+  color: #fff;
+  background: #2a5ca7;
 }
