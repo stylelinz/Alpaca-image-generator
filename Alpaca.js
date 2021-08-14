@@ -1,38 +1,49 @@
+import mergeImages from 'merge-images'
 import selection from './selection.json'
 
 class Alpaca {
   constructor() {
-    this.hair = 'default'
-    this.ears = 'default'
-    this.eyes = 'default'
-    this.mouth = 'default'
-    this.neck = 'default'
-    this.leg = 'default'
-    this.accessories = 'headphone'
     this.backgrounds = 'blue50'
+    this.ears = 'default'
+    this.neck = 'default'
+    this.hair = 'default'
+    this.accessories = 'headphone'
+    this.nose = 'nose'
+    this.eyes = 'default'
+    this.leg = 'default'
+    this.mouth = 'default'
     return new Proxy(this, {
       get: (object, key) => {
         if (!object[key]) return
         return object[key]
       },
-      set: (object, prop, value, proxy) => {
+      set: async (object, prop, value, proxy) => {
         if (!selection[prop].includes(value)) {
           throw new TypeError('The value not include in options.')
         }
         object[prop] = value
+        const src = await object.imagePreview()
+        const preview = document.querySelector('img')
+        preview.src = src
         return true
       }
     })
   }
 
   get allStyles () {
-    return this
+    return Object.entries(this).map(([accessorize, style]) => {
+      return `/alpaca/${accessorize}/${style}.png`
+    })
   }
 
   randomStyles () {
     for (const prop of Object.keys(selection)) {
       this[prop] = selection[prop][~~(Math.random() * selection[prop].length)]
     }
+  }
+
+  imagePreview () {
+    return mergeImages(this.allStyles).then(b64 => b64)
   }
 }
 

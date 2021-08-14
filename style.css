@@ -38,10 +38,9 @@ h1 {
   margin-right: 40px;
 }
 
-.preview>div:first-of-type {
+.preview>img {
   height: 360px;
   width: 360px;
-  background: #003277;
 }
 
 .preview .footer {
@@ -64,6 +63,7 @@ h1 {
   font-size: 15px;
   text-transform: capitalize;
   border-radius: 32px;
+  cursor: pointer;
 }
 
 .btn:hover {
@@ -76,7 +76,7 @@ section>div {
 }
 
 input[type="radio"] {
-  /* opacity: 0.01; */
+  opacity: 0.01;
   z-index: 100;
   position: absolute;
   top: 1em;
