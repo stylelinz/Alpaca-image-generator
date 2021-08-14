@@ -8,5 +8,8 @@
   },
   "devDependencies": {
     "vite": "^2.4.4"
+  },
+  "dependencies": {
+    "merge-images": "^2.0.0"
   }
 }
