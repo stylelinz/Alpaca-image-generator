@@ -14,6 +14,7 @@ changeAccessory(accessoryState)
 panel.appendChild(accessoryElem)
 panel.appendChild(styleElem)
 
+export { styleElem }
 export default panel
 
 // initial accessory panel DOM element
@@ -49,7 +50,7 @@ function style () {
     alpaca[accessoryState] = target.id
   })
 
-  style.renderOptions = (key) => {
+  style.renderOptions = (key = accessoryState) => {
     const content = selection[key].map(style => {
       return optionButton(style, alpaca[key])
     }).join('')

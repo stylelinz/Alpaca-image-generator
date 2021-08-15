@@ -1,8 +1,9 @@
 import mergeImages from 'merge-images'
 import selection from './selection.json'
+import { styleElem } from './options.js'
 
 class Alpaca {
-  constructor() {
+  constructor () {
     this.backgrounds = 'blue50'
     this.ears = 'default'
     this.neck = 'default'
@@ -24,7 +25,9 @@ class Alpaca {
         object[prop] = value
         const src = await object.imagePreview()
         const preview = document.querySelector('img')
+        const download = document.querySelector('a.footer-btn')
         preview.src = src
+        download.href = src
         return true
       }
     })
@@ -40,6 +43,7 @@ class Alpaca {
     for (const prop of Object.keys(selection)) {
       this[prop] = selection[prop][~~(Math.random() * selection[prop].length)]
     }
+    styleElem.renderOptions()
   }
 
   imagePreview () {
