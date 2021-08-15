@@ -44,7 +44,20 @@ h1 {
 }
 
 .preview .footer {
-  margin-top: 10px;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer>button {
+  width: 170px;
+  background-color: #fff;
+  padding: 12px;
+  font-size: 15px;
+  font-weight: 800;
+  border: 0px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 
 /* panel (right side) */
