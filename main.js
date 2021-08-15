@@ -2,6 +2,19 @@ import './style.css'
 import panel from './options.js'
 import alpaca from './Alpaca.js'
 
+document.querySelector('#app').innerHTML = `
+    <h1 class="title">Alpaca Generator</h1>
+    <div class="container">
+      <div class="preview">
+        <img src="" alt="alpaca-preview">
+        <div class="footer">
+          <button class="footer-btn random">Random</button>
+          <a class="footer-btn">Download</a>
+        </div>
+      </div>
+    </div>
+`
+
 const container = document.querySelector('.container')
 container.appendChild(panel)
 

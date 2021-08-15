@@ -3,7 +3,7 @@ import selection from './selection.json'
 import { styleElem } from './options.js'
 
 class Alpaca {
-  constructor () {
+  constructor() {
     this.backgrounds = 'blue50'
     this.ears = 'default'
     this.neck = 'default'
@@ -35,7 +35,7 @@ class Alpaca {
 
   get allStyles () {
     return Object.entries(this).map(([accessorize, style]) => {
-      return `/alpaca/${accessorize}/${style}.png`
+      return `./alpaca/${accessorize}/${style}.png`
     })
   }
 
